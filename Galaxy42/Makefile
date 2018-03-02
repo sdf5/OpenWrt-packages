@@ -14,9 +14,6 @@ PKG_SOURCE_VERSION:=OpenWrt
 PKG_LICENSE:=Antinet / Galaxy / Yedino - Licence
 PKG_LICENSE_FILES:=LICENCE.txt
 
-PKG_FIXUP:=autoreconf
-#PKG_INSTALL:=1
-
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
@@ -28,18 +25,16 @@ TARGET_CFLAGS+= -DBACKWARD_SYSTEM_UNKNOWN
 TARGET_CPPFLAGS+= -DBACKWARD_SYSTEM_UNKNOWN
 TARGET_LDFLAGS+= -latomic
 
-
 HOST_CFLAGS+= -DOPEN_WRT
 HOST_CPPFLAGS+= -DOPEN_WRT
 
 TARGET_CFLAGS+= -DOPEN_WRT
 TARGET_CPPFLAGS+= -DOPEN_WRT
 
-
 define Package/Galaxy42
         SECTION:=Galaxy
 	CATEGORY:=Galaxy
-	DEPENDS:=+libcap-ng-dev +libsodium +boost +boost-system +boost-filesystem +boost-program_options +boost-thread +boost-date_time
+	DEPENDS:=+libcap-ng-dev +libsodium +boost +boost-system +boost-filesystem +boost-program_options +boost-thread +boost-date_time +libatomic +kmod-tun
 	TITLE:=Galaxy
 	URL:=https://github.com/yedino/galaxy42
 endef
@@ -53,9 +48,13 @@ define Build/InstallDev
 endef
 
 define Package/Galaxy42/install
-        $(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/brctl/brctl $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/usr/bin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tunserver.elf $(1)/usr/bin/
 endef
 
 $(eval $(call BuildPackage,Galaxy42))
+
+
+
+
 

@@ -48,6 +48,11 @@ define Build/InstallDev
 endef
 
 define Package/Galaxy42/install
+	#languages
+	(cd $(PKG_BUILD_DIR) && ./contrib/tools/galaxy42-lang-update-all)
+	$(INSTALL_DIR) $(1)/usr/share/locale/
+	$(CP) $(PKG_BUILD_DIR)/share/locale/* $(1)/usr/share/locale/
+	
 	$(INSTALL_DIR) $(1)/usr/bin/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tunserver.elf $(1)/usr/bin/
 endef

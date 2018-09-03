@@ -5,10 +5,10 @@ PKG_NAME:=Galaxy42
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/sdf5/galaxy42.git
-PKG_SOURCE_DATE:=2016-12-29
+PKG_SOURCE_URL:=https://github.com/yedino/galaxy42.git
+PKG_SOURCE_DATE:=2018-08-30
 #commit number or branch or tag name
-PKG_SOURCE_VERSION:=OpenWrt
+PKG_SOURCE_VERSION:=dev
 
 #PKG_MAINTAINER:=Nazwa <email>
 PKG_LICENSE:=Antinet / Galaxy / Yedino - Licence
